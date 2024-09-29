@@ -1,0 +1,156 @@
+prompt --application/pages/page_00000
+begin
+--   Manifest
+--     PAGE: 00000
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.05.31'
+,p_release=>'24.1.1'
+,p_default_workspace_id=>7335182145699007
+,p_default_application_id=>150
+,p_default_id_offset=>36844276540830363
+,p_default_owner=>'WKSP_FRONGPMSTDEV'
+);
+wwv_flow_imp_page.create_page(
+ p_id=>0
+,p_name=>'Global Page - Desktop'
+,p_step_title=>'Global Page - Desktop'
+,p_autocomplete_on_off=>'OFF'
+,p_page_template_options=>'#DEFAULT#'
+,p_page_component_map=>'14'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(9758171390138018)
+,p_name=>'P0_CUMULATIVE_EXP_ID'
+,p_item_sequence=>130
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(16678316906673427)
+,p_name=>'P0_PROG'
+,p_item_sequence=>90
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(16678466392673428)
+,p_name=>'P0_PROGRESS_MESSAGE'
+,p_item_sequence=>100
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(16678502791673429)
+,p_name=>'P0_PROGRESS_SEQ'
+,p_item_sequence=>110
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(16678688879673430)
+,p_name=>'P0_INTERVAL_ID'
+,p_item_sequence=>120
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(18885203560018916)
+,p_name=>'P0_PROGRESS_BAR2'
+,p_item_sequence=>140
+,p_prompt=>'Progress Bar2'
+,p_display_as=>'PLUGIN_COM.STEFANDOBRE.PROGRESSBAR'
+,p_begin_on_new_line=>'N'
+,p_begin_on_new_field=>'N'
+,p_field_template=>wwv_flow_imp.id(308467865097310861)
+,p_item_template_options=>'#DEFAULT#'
+,p_encrypt_session_state_yn=>'N'
+,p_attribute_01=>'floatingonbody'
+,p_attribute_04=>'pb-size-small'
+,p_attribute_05=>'#00A02D'
+,p_attribute_06=>'onbar'
+,p_attribute_07=>'underbar'
+,p_attribute_08=>'pb-animated-stripes'
+,p_attribute_09=>'hidden'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(23038682813582507)
+,p_name=>'P0_CLIENT'
+,p_item_sequence=>70
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(23038817415582508)
+,p_name=>'P0_ENV'
+,p_item_sequence=>80
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(30858308489108202)
+,p_name=>'P0_WIP_AMOUNT'
+,p_item_sequence=>40
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(30858437295108203)
+,p_name=>'P0_WIP_LINES'
+,p_item_sequence=>50
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(30858547580108204)
+,p_name=>'P0_WIP_HOURS'
+,p_item_sequence=>60
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(50014620457211785)
+,p_name=>'P0_PROJECT_LABEL'
+,p_item_sequence=>10
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(50015025149211789)
+,p_name=>'P0_TRUST_LABEL'
+,p_item_sequence=>20
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(50015142261211790)
+,p_name=>'P0_RETAINER_LABEL'
+,p_item_sequence=>30
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(38881766864053097)
+,p_name=>'New'
+,p_event_sequence=>10
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'ready'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(38881878443053098)
+,p_event_id=>wwv_flow_imp.id(38881766864053097)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'window.addEventListener("error", function (e) {',
+'   alert("Error occurred: " + e.error.message);',
+'   return false;',
+'})',
+''))
+);
+wwv_flow_imp.component_end;
+end;
+/
