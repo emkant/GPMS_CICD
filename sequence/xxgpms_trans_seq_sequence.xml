@@ -5,13 +5,13 @@
 	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-	<changeSet id="4fb8024770f5e451ed786091334d836598fed2a5" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
+	<changeSet id="53c43670b256e0ee7fda07f80a168c3a7f31c8dc" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
 		<n0:createSxmlObject objectName="XXGPMS_TRANS_SEQ" objectType="SEQUENCE" ownerName="WKSP_FRONGPMSTDEV"  replaceIfExists="false" >
 			<n0:source><![CDATA[
   <SEQUENCE xmlns="http://xmlns.oracle.com/ku" version="1.0">
    <SCHEMA>%USER_NAME%</SCHEMA>
    <NAME>XXGPMS_TRANS_SEQ</NAME>
-   <START_WITH>51259</START_WITH>
+   <START_WITH>51276</START_WITH>
    <INCREMENT>1</INCREMENT>
    <MINVALUE>1</MINVALUE>
    <MAXVALUE>9999999999999999999999999999</MAXVALUE>

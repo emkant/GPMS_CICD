@@ -5,7 +5,7 @@
 	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-	<changeSet id="652b20a6c2de5b6a844a1e600515bbfe9fe07c63" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
+	<changeSet id="eb2b03bac053129b49d2b737130b9c9f49b4f9c0" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
 		<n0:createOraclePackageBody objectName="XX_GPMS" objectType="PACKAGE_BODY" ownerName="WKSP_FRONGPMSTDEV"  replaceIfExists="false" >
 			<n0:source><![CDATA[CREATE OR REPLACE EDITIONABLE PACKAGE BODY "%USER_NAME%"."XX_GPMS" AS
   INSTANCE_URL VARCHAR2(200);
@@ -126,9 +126,6 @@
               || '",
                 "realizedBillRate" : "'
               || P_REALIZED_BILL_RATE_ATTR
-              || '",
-              "preadjustedHours" : "'
-              || P_HOURS_ENTERED
               || '"
                }';
     WIP_DEBUG (2, 180000, L_URL, '');
@@ -1927,7 +1924,7 @@
     -- 1. REVERSAL OF THE CURRENT EXP LINE
     PERFORM_UNPROCESSED_COSTS_CALL(P_EXPENDITURE_ITEM_ID => P_EXPENDITURE_ITEM_ID
                                    ,P_REVERSAL => 'Y'
-                                   ,P_INTERNAL_COMMENT=>P_JUSTIFICATION
+                                   ,P_INTERNAL_COMMENT=>TRIM( BOTH ':' FROM P_JUSTIFICATION)
                                 --    ,P_STANDARD_BILL_RATE_ATTR => V_PROJECT_COSTS_ROW.STANDARD_BILL_RATE_ATTR
                                 --    ,P_PROJECT_BILL_RATE_ATTR => V_PROJECT_COSTS_ROW.PROJECT_BILL_RATE_ATTR
                                 --    ,P_REALIZED_BILL_RATE_ATTR => V_PROJECT_COSTS_ROW.REALIZED_BILL_RATE_ATTR
@@ -1940,15 +1937,15 @@
        WIP_DEBUG(2,15002,'STEP 2','');
       -- SPLIT TRANSACTION TO CREATE TWO NEW LINES
        PERFORM_UNPROCESSED_COSTS_CALL(P_EXPENDITURE_ITEM_ID => P_EXPENDITURE_ITEM_ID
-                                   ,P_INTERNAL_COMMENT=>P_JUSTIFICATION
+                                   ,P_INTERNAL_COMMENT=>TRIM( BOTH ':' FROM P_JUSTIFICATION)
                                    ,P_HOURS_ENTERED => P_ADJUSTED_HOURS
+                                   ,P_REALIZED_BILL_RATE_ATTR => 0
                                    ,P_RESPONSE => V_RESPONSE
                                    ,P_RESPONSE_CODE => V_RESPONSE_CODE);
        WIP_DEBUG(2,15003,'STEP 2.1','');
        PERFORM_UNPROCESSED_COSTS_CALL(P_EXPENDITURE_ITEM_ID => P_EXPENDITURE_ITEM_ID
-                                    ,P_INTERNAL_COMMENT=>P_JUSTIFICATION
-                                    ,P_HOURS_ENTERED => V_PROJECT_COSTS_ROW.QUANTITY-P_ADJUSTED_HOURS
-                                    ,P_REALIZED_BILL_RATE_ATTR => 0
+                                    ,P_INTERNAL_COMMENT=>TRIM( BOTH ':' FROM P_JUSTIFICATION)
+                                    ,P_HOURS_ENTERED => V_PROJECT_COSTS_ROW.QUANTITY-P_ADJUSTED_HOURS                                   
                                     ,P_RESPONSE => V_RESPONSE
                                     ,P_RESPONSE_CODE => V_RESPONSE_CODE);
        WIP_DEBUG(2,15004,'END OF HOURS ADJUSTMENT','');
@@ -1976,7 +1973,8 @@
         P_RESPONSE_CODE := V_RESPONSE_CODE;
       END IF;
     ELSE
-         P_RESPONSE := V_RESPONSE;
+        WIP_DEBUG(2,15005,'Step1 Failure:'||V_RESPONSE||' CODE:'||V_RESPONSE_CODE,'');
+        P_RESPONSE := V_RESPONSE;
         P_RESPONSE_CODE := V_RESPONSE_CODE;
     END IF;
   EXCEPTION
@@ -4990,9 +4988,6 @@
                              || '",
                                "realizedBillRate" : "'
                              || TRIM(NVL(P_REALIZED_BILL_RATE_ATTR,V_EXP_COSTS_ROW.REALIZED_BILL_RATE_ATTR))
-                             || '",
-                             "preadjustedHours" : "'
-                             || V_ORIGINAL_QUANTITY
                              || '"}]}';
       APEX_WEB_SERVICE.G_REQUEST_HEADERS (1).NAME := 'Content-Type';
       APEX_WEB_SERVICE.G_REQUEST_HEADERS (1).VALUE := 'application/json';

@@ -59,7 +59,7 @@ begin
   end if;
 end;  
 /
-@@f800/install.sql
+@@f800.sql
         ]]></n0:source>
     </n0:runApexScript>
 </changeSet>
