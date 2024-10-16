@@ -1930,13 +1930,13 @@ CREATE OR REPLACE EDITIONABLE PACKAGE BODY "XX_GPMS" AS
        PERFORM_UNPROCESSED_COSTS_CALL(P_EXPENDITURE_ITEM_ID => P_EXPENDITURE_ITEM_ID
                                    ,P_INTERNAL_COMMENT=>TRIM( BOTH ':' FROM P_JUSTIFICATION)
                                    ,P_HOURS_ENTERED => P_ADJUSTED_HOURS
-                                   ,P_REALIZED_BILL_RATE_ATTR => 0
                                    ,P_RESPONSE => V_RESPONSE
                                    ,P_RESPONSE_CODE => V_RESPONSE_CODE);
        WIP_DEBUG(2,15003,'STEP 2.1','');
        PERFORM_UNPROCESSED_COSTS_CALL(P_EXPENDITURE_ITEM_ID => P_EXPENDITURE_ITEM_ID
                                     ,P_INTERNAL_COMMENT=>TRIM( BOTH ':' FROM P_JUSTIFICATION)
-                                    ,P_HOURS_ENTERED => V_PROJECT_COSTS_ROW.QUANTITY-P_ADJUSTED_HOURS                                   
+                                    ,P_HOURS_ENTERED => V_PROJECT_COSTS_ROW.QUANTITY-P_ADJUSTED_HOURS   
+                                     ,P_REALIZED_BILL_RATE_ATTR => 0                                
                                     ,P_RESPONSE => V_RESPONSE
                                     ,P_RESPONSE_CODE => V_RESPONSE_CODE);
        WIP_DEBUG(2,15004,'END OF HOURS ADJUSTMENT','');
@@ -2127,6 +2127,7 @@ CREATE OR REPLACE EDITIONABLE PACKAGE BODY "XX_GPMS" AS
           BILL_HOLD_FLAG = CASE WHEN P_BILL_HOLD_FLAG <> 'BO' THEN P_BILL_HOLD_FLAG END
         WHERE
           EXPENDITURE_ITEM_ID = I.EXP_ID;
+        WIP_DEBUG (3, 5306, 'Updated for Exp ID: '||i.exp_id, '');   
       END IF;
 
     --   INPUT_STR := SUBSTR(INPUT_STR, VAR1, 32000);

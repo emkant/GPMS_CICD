@@ -1,0 +1,852 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-1">
+        <createSequence cacheSize="0" maxValue="9999999999999999999999999999" sequenceName="XXGPMS_TRANS_SEQ" startValue="51297"/>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-2">
+        <createTable tableName="XXGPMS_PROJECT_CONTRACT">
+            <column name="PROJECT_ID" type="NUMBER(18, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROJECT_NUMBER" type="VARCHAR2(25 BYTE)"/>
+            <column name="CONTRACT_NUMBER" type="VARCHAR2(100 BYTE)"/>
+            <column name="BU_NAME" type="VARCHAR2(50 BYTE)"/>
+            <column name="CURRENCY_CODE" type="VARCHAR2(50 BYTE)"/>
+            <column name="CONTRACT_TYPE_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+            <column name="ORGANIZATION_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="PROJECT_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="LEGAL_ENTITY_NAME" type="VARCHAR2(150 BYTE)"/>
+            <column name="CONTRACT_ID" type="NUMBER"/>
+            <column name="CUSTOMER_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="RETAINER_BALANCE" type="NUMBER"/>
+            <column name="BUSINESS_UNIT_ID" type="NUMBER"/>
+            <column name="USER_TRANSACTION_SOURCE" type="VARCHAR2(100 BYTE)"/>
+            <column name="TRANSACTION_SOURCE_ID" type="NUMBER"/>
+            <column name="TRUST_BALANCE" type="NUMBER"/>
+            <column name="CREATION_DATE" type="date"/>
+            <column name="CREATED_BY" type="VARCHAR2(100 BYTE)"/>
+            <column name="LAST_UPDATE_DATE" type="date"/>
+            <column name="LAST_UPDATED_BY" type="VARCHAR2(100 BYTE)"/>
+            <column name="CONTRACT_TYPE_ID" type="NUMBER"/>
+            <column name="EBILL_MATTER_ID" type="VARCHAR2(100 BYTE)"/>
+            <column name="TAX_REGISTRATION_TYPE" type="VARCHAR2(100 BYTE)"/>
+            <column name="TAX_REGISTRATION_NUMBER" type="VARCHAR2(100 BYTE)"/>
+            <column name="TAX_REGISTRATION_COUNTRY" type="VARCHAR2(500 BYTE)"/>
+            <column name="CONTRACT_OFFICE" type="VARCHAR2(200 BYTE)"/>
+            <column name="BILL_CUSTOMER_NAME" type="VARCHAR2(1000 BYTE)"/>
+            <column name="BILL_CUSTOMER_ACCT" type="VARCHAR2(1000 BYTE)"/>
+            <column name="BILL_CUSTOMER_SITE" type="VARCHAR2(1000 BYTE)"/>
+            <column name="CLIENT_NUMBER" type="VARCHAR2(1000 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-3">
+        <createTable tableName="XXGPMS_USER_ROLES">
+            <column autoIncrement="true" defaultOnNull="true" generationType="BY DEFAULT" name="ID" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="XXGPMS_USER_ROLES_ID_PK"/>
+            </column>
+            <column name="USER_LOGIN" type="VARCHAR2(4000 BYTE)"/>
+            <column name="USER_ID" type="NUMBER"/>
+            <column name="ROLE_NAME" type="VARCHAR2(1000 BYTE)"/>
+            <column name="CREATION_DATE" type="date"/>
+            <column name="FIRST_NAME" type="VARCHAR2(1000 BYTE)"/>
+            <column name="LAST_NAME" type="VARCHAR2(1000 BYTE)"/>
+            <column name="LOCATION_CODE" type="VARCHAR2(1000 BYTE)"/>
+            <column name="LOCATION_NAME" type="VARCHAR2(1000 BYTE)"/>
+            <column name="TOWN" type="VARCHAR2(2000 BYTE)"/>
+            <column name="COUNTRY" type="VARCHAR2(1000 BYTE)"/>
+            <column name="DEPARTMENT" type="VARCHAR2(2000 BYTE)"/>
+            <column name="USERNAME" type="VARCHAR2(2000 BYTE)"/>
+            <column name="ACTIVE_FLAG" type="VARCHAR2(100 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-4">
+        <createTable tableName="XXGPMS_PROJECT_COSTS">
+            <column name="PROJECT_ID" type="NUMBER(18, 0)"/>
+            <column name="PROJECT_NUMBER" type="VARCHAR2(25 BYTE)"/>
+            <column name="BILLABLE_FLAG" type="VARCHAR2(20 BYTE)"/>
+            <column name="TASK_ID" type="NUMBER(18, 0)"/>
+            <column name="TASK_NUMBER" type="VARCHAR2(25 BYTE)"/>
+            <column name="PROJECT_STATUS_CODE" type="VARCHAR2(25 BYTE)"/>
+            <column name="PROJECT_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="EXPENDITURE_ITEM_ID" type="NUMBER(18, 0)">
+                <constraints primaryKey="true" primaryKeyName="XXGPMS_PROJECT_COSTS_CON"/>
+            </column>
+            <column name="EXPENDITURE_ITEM_DATE" type="date"/>
+            <column name="REVENUE_RECOGNIZED_FLAG" type="VARCHAR2(20 BYTE)"/>
+            <column name="BILL_HOLD_FLAG" type="VARCHAR2(20 BYTE)"/>
+            <column name="QUANTITY" type="NUMBER"/>
+            <column name="PROJFUNC_RAW_COST" type="NUMBER"/>
+            <column name="RAW_COST_RATE" type="NUMBER"/>
+            <column name="PROJFUNC_BURDENED_COST" type="NUMBER"/>
+            <column name="BURDEN_COST_RATE" type="NUMBER"/>
+            <column name="INVOICED_FLAG" type="VARCHAR2(10 BYTE)"/>
+            <column name="REVENUE_HOLD_FLAG" type="VARCHAR2(10 BYTE)"/>
+            <column name="ACCT_CURRENCY_CODE" type="VARCHAR2(10 BYTE)"/>
+            <column name="ACCT_RAW_COST" type="NUMBER"/>
+            <column name="ACCT_BURDENED_COST" type="NUMBER"/>
+            <column name="TASK_BILLABLE_FLAG" type="VARCHAR2(10 BYTE)"/>
+            <column name="TASK_START_DATE" type="date"/>
+            <column name="TASK_COMPLETION_DATE" type="date"/>
+            <column name="PROJECT_START_DATE" type="date"/>
+            <column name="TASK_NAME" type="VARCHAR2(250 BYTE)"/>
+            <column name="SESSION_ID" type="NUMBER">
+                <constraints primaryKey="true" primaryKeyName="XXGPMS_PROJECT_COSTS_CON"/>
+            </column>
+            <column name="EXTERNAL_BILL_RATE" type="NUMBER"/>
+            <column name="INTERNAL_COMMENT" type="VARCHAR2(1000 BYTE)"/>
+            <column name="NARRATIVE_BILLING_OVERFLOW" type="VARCHAR2(1000 BYTE)"/>
+            <column name="TOTAL_AMOUNT" type="NUMBER(18, 2)"/>
+            <column name="EXPENDITURE_COMMENT" type="VARCHAR2(2000 BYTE)"/>
+            <column name="UNIT_OF_MEASURE" type="VARCHAR2(30 BYTE)"/>
+            <column name="FIRST_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="LAST_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="PERSON_NAME" type="VARCHAR2(200 BYTE)"/>
+            <column name="EXPENDITURE_TYPE_NAME" type="VARCHAR2(240 BYTE)"/>
+            <column name="EXPENDITURE_CATEGORY_NAME" type="VARCHAR2(240 BYTE)"/>
+            <column name="PROJECT_BILL_RATE_ATTR" type="VARCHAR2(24 BYTE)"/>
+            <column name="REALIZED_BILL_RATE_ATTR" type="VARCHAR2(100 BYTE)"/>
+            <column name="STANDARD_BILL_RATE_ATTR" type="VARCHAR2(24 BYTE)"/>
+            <column name="EVENT_ATTR" type="VARCHAR2(100 BYTE)"/>
+            <column name="PROJECT_BILL_RATE_AMT" type="NUMBER"/>
+            <column name="REALIZED_BILL_RATE_AMT" type="NUMBER"/>
+            <column name="STANDARD_BILL_RATE_AMT" type="NUMBER"/>
+            <column name="BU_NAME" type="VARCHAR2(50 BYTE)"/>
+            <column name="BU_ID" type="NUMBER"/>
+            <column name="JOB_NAME" type="VARCHAR2(50 BYTE)"/>
+            <column name="JOB_ID" type="NUMBER"/>
+            <column name="SYSTEM_LINKAGE_FUNCTION" type="VARCHAR2(10 BYTE)"/>
+            <column name="CST_INVOICE_SUBMITTED_COUNT" type="NUMBER"/>
+            <column name="ORIG_TRANSACTION_REFERENCE" type="VARCHAR2(100 BYTE)"/>
+            <column name="DOCUMENT_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="DOC_ENTRY_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="CREATION_DATE" type="date"/>
+            <column name="CREATED_BY" type="VARCHAR2(100 BYTE)"/>
+            <column name="LAST_UPDATE_DATE" type="date"/>
+            <column name="LAST_UPDATED_BY" type="VARCHAR2(100 BYTE)"/>
+            <column name="CONTRACT_NUMBER" type="VARCHAR2(100 BYTE)"/>
+            <column name="LINE_NUMBER" type="VARCHAR2(500 BYTE)"/>
+            <column name="BILLING_INSTRUCTIONS" type="VARCHAR2(2000 BYTE)"/>
+            <column name="DRAFT_INVOICE_NUMBER" type="NUMBER"/>
+            <column name="INVOICE_STATUS_CODE" type="VARCHAR2(30 BYTE)"/>
+            <column name="TRANSFER_STATUS_CODE" type="VARCHAR2(30 BYTE)"/>
+            <column name="NLR_ORG_ID" type="VARCHAR2(1000 BYTE)"/>
+            <column name="WIP_CATEGORY" type="VARCHAR2(1000 BYTE)"/>
+            <column name="NON_LABOUR_RESOURCE_NAME" type="VARCHAR2(2000 BYTE)"/>
+            <column name="PROJECT_CURRENCY_CODE" type="VARCHAR2(200 BYTE)"/>
+            <column name="WRITE_UP_DOWN_VALUE" type="VARCHAR2(1000 BYTE)"/>
+            <column name="INCURRED_BY_PERSON_ID" type="NUMBER"/>
+            <column name="JOB_APPROVAL_ID" type="NUMBER"/>
+            <column name="TOP_TASK_NUMBER" type="VARCHAR2(100 BYTE)"/>
+            <column name="DESCRIPTION" type="VARCHAR2(4000 BYTE)"/>
+            <column name="BILL_SET_NUM" type="NUMBER"/>
+            <column name="CONTRACT_LINE_NUM" type="VARCHAR2(100 BYTE)"/>
+            <column name="EXP_BU_ID" type="NUMBER"/>
+            <column name="EXP_ORG_ID" type="NUMBER"/>
+            <column name="DEPT_NAME" type="VARCHAR2(1000 BYTE)"/>
+            <column name="TRANSACTION_SOURCE" type="VARCHAR2(1000 BYTE)"/>
+            <column name="DOCUMENT_ID" type="NUMBER"/>
+            <column name="TRANSACTION_SOURCE_ID" type="NUMBER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-5">
+        <createTable tableName="XXGPMS_USERS">
+            <column autoIncrement="true" defaultOnNull="true" generationType="BY DEFAULT" name="ID" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="XXGPMS_USERS_ID_PK"/>
+            </column>
+            <column name="USER_ID" type="NUMBER"/>
+            <column name="BUSINESS_GROUP_ID" type="NUMBER"/>
+            <column name="ACTIVE_FLAG" type="VARCHAR2(100 CHAR)"/>
+            <column name="START_DATE" type="date"/>
+            <column name="END_DATE" type="date"/>
+            <column name="USER_GUID" type="VARCHAR2(100 CHAR)"/>
+            <column name="USERNAME" type="VARCHAR2(1000 CHAR)"/>
+            <column name="MULTITENANCY_USERNAME" type="VARCHAR2(100 CHAR)"/>
+            <column name="PERSON_ID" type="NUMBER"/>
+            <column name="PARTY_ID" type="NUMBER"/>
+            <column name="OBJECT_VERSION_NUMBER" type="NUMBER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-6">
+        <createTable tableName="PROGRESS_ENTRIES">
+            <column name="PERCENTAGE" type="NUMBER"/>
+            <column name="MESSAGE" type="VARCHAR2(100 BYTE)"/>
+            <column name="CREATED_DATE" type="TIMESTAMP(6)"/>
+            <column name="USER_EMAIL" type="VARCHAR2(100 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-7">
+        <createTable tableName="XXGPMS_PROJECT_EVENTS">
+            <column name="PROJECT_ID" type="NUMBER(18, 0)"/>
+            <column name="PROJECT_NUMBER" type="VARCHAR2(50 BYTE)"/>
+            <column name="PROJECT_STATUS_CODE" type="VARCHAR2(20 BYTE)"/>
+            <column name="PROJECT_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="EVENT_ID" type="NUMBER"/>
+            <column name="EVENT_NUM" type="NUMBER(18, 0)"/>
+            <column name="EVENT_TYPE_CODE" type="VARCHAR2(20 BYTE)"/>
+            <column name="BILL_TRNS_AMOUNT" type="NUMBER"/>
+            <column name="BILL_TRNS_CURRENCY_CODE" type="VARCHAR2(10 BYTE)"/>
+            <column name="BILL_HOLD_FLAG" type="VARCHAR2(10 BYTE)"/>
+            <column name="REVENUE_HOLD_FLAG" type="VARCHAR2(10 BYTE)"/>
+            <column name="INVOICE_CURRENCY_CODE" type="VARCHAR2(10 BYTE)"/>
+            <column name="TASK_BILLABLE_FLAG" type="VARCHAR2(10 BYTE)"/>
+            <column name="TASK_START_DATE" type="date"/>
+            <column name="TASK_COMPLETION_DATE" type="date"/>
+            <column name="TASK_NUMBER" type="VARCHAR2(20 BYTE)"/>
+            <column name="INVOICEDSTATUS" type="VARCHAR2(20 BYTE)"/>
+            <column name="TASK_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="PROJECT_START_DATE" type="date"/>
+            <column name="EVNT_COMPLETION_DATE" type="date"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+            <column name="EVENT_DESC" type="VARCHAR2(1000 BYTE)"/>
+            <column name="EVENT_INTERNAL_COMMENT" type="VARCHAR2(1000 BYTE)"/>
+            <column name="CONTRACT_NUMBER" type="VARCHAR2(100 BYTE)"/>
+            <column name="CONTRACT_LINE_NUMBER" type="VARCHAR2(50 BYTE)"/>
+            <column name="BUSINESS_UNIT_NAME" type="VARCHAR2(50 BYTE)"/>
+            <column name="ORGANIZATION_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="CONTRACT_TYPE_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="EVENT_TYPE_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="FUSION_FLAG" type="VARCHAR2(1 BYTE)"/>
+            <column name="EVNT_INVOICE_SUBMITTED_COUNT" type="NUMBER"/>
+            <column name="COMMITTEE_APPROVAL_REQUIRED" type="VARCHAR2(1 BYTE)"/>
+            <column name="CREATION_DATE" type="date"/>
+            <column name="CREATED_BY" type="VARCHAR2(100 BYTE)"/>
+            <column name="LAST_UPDATE_DATE" type="date"/>
+            <column name="LAST_UPDATED_BY" type="VARCHAR2(100 BYTE)"/>
+            <column name="WIP_EVENT_TAG" type="VARCHAR2(64 BYTE)"/>
+            <column name="DRAFT_INVOICE_NUMBER" type="NUMBER"/>
+            <column name="INVOICE_STATUS_CODE" type="VARCHAR2(30 BYTE)"/>
+            <column name="TRANSFER_STATUS_CODE" type="VARCHAR2(30 BYTE)"/>
+            <column name="WIP_CATEGORY" type="VARCHAR2(1000 BYTE)"/>
+            <column name="EXPENDITURE_TYPE" type="VARCHAR2(200 BYTE)"/>
+            <column name="BILL_SET_NUM" type="NUMBER"/>
+            <column name="EXP_BU_ID" type="NUMBER"/>
+            <column name="EXP_ORG_ID" type="NUMBER"/>
+            <column name="DEPT_NAME" type="VARCHAR2(1000 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-8">
+        <createTable tableName="SPELL_CHECK">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="ID" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="JSON_VALUE" type="VARCHAR2(4000 BYTE)"/>
+            <column name="JSON_VALUE_NEW" type="CLOB"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-9">
+        <createTable tableName="SPELL_CHECKER_DTL">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="ID" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SPELL_CHECKER_DTL_PK"/>
+            </column>
+            <column name="NARRATIVE" type="VARCHAR2(4000 BYTE)"/>
+            <column name="ERROR_WORD" type="VARCHAR2(4000 BYTE)"/>
+            <column name="SUGGESTED_WORDS" type="VARCHAR2(4000 BYTE)"/>
+            <column name="EXP_ITEM_ID" type="NUMBER"/>
+            <column name="USER_EMAIL" type="VARCHAR2(100 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-10">
+        <createTable tableName="AXXML_TAB">
+            <column name="ID" type="NUMBER"/>
+            <column name="XML_DATA" type="XMLTYPE"/>
+            <column name="VC2_DATA" type="VARCHAR2(32000 BYTE)"/>
+            <column name="XML_CLOB" type="CLOB"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="SEQ" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="SYSTIMESTAMP" name="TS" type="TIMESTAMP(6)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-11">
+        <createTable tableName="WIP_LOGGER">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="ID" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MESSAGE_VC" type="VARCHAR2(4000 BYTE)"/>
+            <column name="MESSAGE_CLOB" type="CLOB"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-12">
+        <createTable tableName="PRT_ORGANIZATIONS">
+            <column autoIncrement="true" defaultOnNull="true" generationType="BY DEFAULT" name="ORGANIZATION_ID" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PRT_ORGANIZATIONS_PK"/>
+            </column>
+            <column name="ORGANIZATION_NAME" type="VARCHAR2(1000 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ORGANIZATION_TYPE" type="VARCHAR2(100 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR2(1000 BYTE)"/>
+            <column name="ENABLED_FLAG" type="VARCHAR2(1 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="END_DATE_ACTIVE" type="date"/>
+            <column name="DFF_N1" type="NUMBER"/>
+            <column name="DFF_N2" type="NUMBER"/>
+            <column name="DFF_N3" type="NUMBER"/>
+            <column name="DFF_N4" type="NUMBER"/>
+            <column name="DFF_N5" type="NUMBER"/>
+            <column name="DFF_V1" type="VARCHAR2(240 BYTE)"/>
+            <column name="DFF_V2" type="VARCHAR2(240 BYTE)"/>
+            <column name="DFF_V3" type="VARCHAR2(240 BYTE)"/>
+            <column name="DFF_V4" type="VARCHAR2(240 BYTE)"/>
+            <column name="DFF_V5" type="VARCHAR2(240 BYTE)"/>
+            <column name="DFF_D1" type="date"/>
+            <column name="DFF_D2" type="date"/>
+            <column name="CREATION_DATE" type="TIMESTAMP(6) WITH LOCAL TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR2(100 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_UPDATE_DATE" type="TIMESTAMP(6) WITH LOCAL TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_UPDATED_BY" type="VARCHAR2(100 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-13">
+        <createTable tableName="PRT_ENVIRONMENTS">
+            <column autoIncrement="true" defaultOnNull="true" generationType="BY DEFAULT" name="ENVIRONMENT_ID" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PRT_ENVIRONMENTS_PK"/>
+            </column>
+            <column name="ORGANIZATION_ID" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENVIRONMENT_NAME" type="VARCHAR2(100 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BASE_URL" type="VARCHAR2(1000 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENVIRONMENT_TYPE_CODE" type="VARCHAR2(100 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENVIRONMENT_PURPOSE_CODE" type="VARCHAR2(100 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SSO_MODE_CODE" type="VARCHAR2(100 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPGRADE_SCHEDULE_CODE" type="VARCHAR2(100 BYTE)"/>
+            <column name="UPGRADE_CONCURRENCY_CODE" type="VARCHAR2(100 BYTE)"/>
+            <column name="VERSION" type="VARCHAR2(100 BYTE)"/>
+            <column name="DESCRIPTION" type="VARCHAR2(1000 BYTE)"/>
+            <column name="ENABLED_FLAG" type="VARCHAR2(1 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DFF_N1" type="NUMBER"/>
+            <column name="DFF_N2" type="NUMBER"/>
+            <column name="DFF_N3" type="NUMBER"/>
+            <column name="DFF_N4" type="NUMBER"/>
+            <column name="DFF_N5" type="NUMBER"/>
+            <column name="DFF_V1" type="VARCHAR2(240 BYTE)"/>
+            <column name="DFF_V2" type="VARCHAR2(240 BYTE)"/>
+            <column name="DFF_V3" type="VARCHAR2(240 BYTE)"/>
+            <column name="DFF_V4" type="VARCHAR2(240 BYTE)"/>
+            <column name="DFF_V5" type="VARCHAR2(240 BYTE)"/>
+            <column name="DFF_D1" type="date"/>
+            <column name="DFF_D2" type="date"/>
+            <column name="CREATION_DATE" type="TIMESTAMP(6) WITH LOCAL TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR2(100 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_UPDATE_DATE" type="TIMESTAMP(6) WITH LOCAL TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_UPDATED_BY" type="VARCHAR2(100 BYTE)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROJECT_LABEL" type="VARCHAR2(50 BYTE)"/>
+            <column name="TRUST_LABEL" type="VARCHAR2(50 BYTE)"/>
+            <column name="RETAINER_LABEL" type="VARCHAR2(100 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-14">
+        <createTable tableName="XXGPMS_PROJECT_SPLIT">
+            <column name="SESSION_ID" type="NUMBER"/>
+            <column name="PROJECT_NUMBER" type="VARCHAR2(25 BYTE)"/>
+            <column name="TASK_NUMBER" type="VARCHAR2(25 BYTE)"/>
+            <column name="QUANTITY" type="NUMBER"/>
+            <column name="CREATION_DATE" type="date"/>
+            <column name="CREATED_BY" type="VARCHAR2(100 BYTE)"/>
+            <column name="LAST_UPDATE_DATE" type="date"/>
+            <column name="LAST_UPDATED_BY" type="VARCHAR2(100 BYTE)"/>
+            <column name="ACTION" type="VARCHAR2(2000 BYTE)"/>
+            <column name="PERCENTAGE" type="NUMBER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-15">
+        <createTable tableName="XXGPMS_PROJECT_RATES">
+            <column name="PROJECT_ID" type="VARCHAR2(1000 BYTE)"/>
+            <column name="PROJECT_NUMBER" type="VARCHAR2(1000 BYTE)"/>
+            <column name="TASK_ID" type="NUMBER"/>
+            <column name="PROJ_ELEMENT_ID" type="NUMBER"/>
+            <column name="CARRYING_OUT_ORGANIZATION_ID" type="NUMBER"/>
+            <column name="ATTRIBUTE_NUMBER1" type="NUMBER"/>
+            <column name="ATTRIBUTE_NUMBER2" type="NUMBER"/>
+            <column name="ATTRIBUTE_NUMBER3" type="NUMBER"/>
+            <column name="PERSON_ID" type="NUMBER"/>
+            <column name="START_DATE_ACTIVE" type="date"/>
+            <column name="INCURRED_BY_PERSON_ID" type="NUMBER"/>
+            <column name="END_DATE_ACTIVE" type="date"/>
+            <column name="RATE_UNIT" type="VARCHAR2(1000 BYTE)"/>
+            <column name="RATE" type="NUMBER"/>
+            <column name="RATE_SCHEDULE_ID" type="NUMBER"/>
+            <column name="EXPENDITURE_TYPE_ID" type="NUMBER"/>
+            <column name="PERSON_JOB_ID" type="NUMBER"/>
+            <column name="RAW_COST_RATE" type="NUMBER"/>
+            <column name="EXPENDITURE_ITEM_DATE" type="date"/>
+            <column name="MARKUP_PERCENTAGE" type="NUMBER"/>
+            <column name="JOB_ID" type="NUMBER"/>
+            <column name="STANDARD_RATE" type="NUMBER"/>
+            <column name="AGREEMENT_RATE" type="NUMBER"/>
+            <column name="EXPENDITURE_ITEM_ID" type="NUMBER"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+            <column name="USER_EMAIL" type="VARCHAR2(1000 BYTE)"/>
+            <column name="CREATED_DATE" type="TIMESTAMP(6)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-16">
+        <createTable tableName="WEBSERVICE_LOG">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="ID" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="URL" type="VARCHAR2(1000 BYTE)"/>
+            <column name="REQUEST" type="CLOB"/>
+            <column name="RESPONSE" type="CLOB"/>
+            <column name="RESPONSE_CODE" type="NUMBER"/>
+            <column defaultValueComputed="SYSTIMESTAMP" name="CREATED" type="TIMESTAMP(6)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-17">
+        <createTable tableName="XXGPMS_PROJECT_INVOICE_HISTORY">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="ID" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C0055662"/>
+            </column>
+            <column name="INVOICE_DATE" type="date"/>
+            <column name="INVOICE_NUMBER" type="VARCHAR2(1000 BYTE)"/>
+            <column name="ADJUSTMENTS" type="NUMBER"/>
+            <column name="INVOICE_AMOUNT" type="NUMBER"/>
+            <column name="TAX" type="NUMBER"/>
+            <column name="TOTAL_INVOICE_AMOUNT" type="NUMBER"/>
+            <column name="OPEN_BALANCE" type="NUMBER"/>
+            <column name="LAST_RECEIPT_DATE" type="date"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+            <column name="CONTRACT_ID" type="NUMBER"/>
+            <column name="INVOICE_ID" type="NUMBER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-18">
+        <createTable tableName="XXGPMS_PROJECT_WIP_CATEGORY">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="ID" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WIP_CATEGORY" type="VARCHAR2(200 BYTE)"/>
+            <column name="DRAFT_NUMBER" type="VARCHAR2(100 BYTE)"/>
+            <column name="AGREEMENT_NUMBER" type="VARCHAR2(200 BYTE)"/>
+            <column name="PROJECT_NUMBER" type="VARCHAR2(200 BYTE)"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-19">
+        <createTable tableName="LOAD_NARRATIVES">
+            <column autoIncrement="true" defaultOnNull="true" generationType="BY DEFAULT" name="ID" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C0061004"/>
+            </column>
+            <column name="EXPENDITURE_ITEM_ID" type="NUMBER"/>
+            <column name="INVOICE_NARRATIVE" type="VARCHAR2(255 BYTE)"/>
+            <column name="INTERNAL_COMMENTS" type="VARCHAR2(32767 BYTE)"/>
+            <column name="EXPENDITURE_ITEM_DATE" type="date"/>
+            <column name="PERSON_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="TITLE" type="VARCHAR2(100 BYTE)"/>
+            <column name="QUANTITY" type="NUMBER"/>
+            <column name="UOM" type="VARCHAR2(50 BYTE)"/>
+            <column name="BILLABLE" type="VARCHAR2(1 BYTE)"/>
+            <column name="STANDARD_RATE" type="NUMBER"/>
+            <column name="STANDARD_AMOUNT" type="NUMBER"/>
+            <column name="AGREEMENT_RATE" type="NUMBER"/>
+            <column name="AGREEMENT_AMOUNT" type="NUMBER"/>
+            <column name="REAL__RATE" type="NUMBER"/>
+            <column name="FEE_ALLOCATION" type="NUMBER"/>
+            <column name="BILLABLE_HOLD" type="VARCHAR2(1 BYTE)"/>
+            <column name="CURRENCY" type="VARCHAR2(50 BYTE)"/>
+            <column name="DESCRIPTION" type="VARCHAR2(32767 BYTE)"/>
+            <column name="INV_STATUS" type="VARCHAR2(1 BYTE)"/>
+            <column name="DRAFT_STATUS" type="VARCHAR2(32767 BYTE)"/>
+            <column name="DRAFT_INVOICE_NUMBER" type="VARCHAR2(32767 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-20">
+        <createTable tableName="XXGPMS_INTERPROJECTS">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="ID" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="XXGPMS_INTERPROJECTS_ID_PK"/>
+            </column>
+            <column name="PROJECT_NUMBER" type="VARCHAR2(100 CHAR)"/>
+            <column name="LABOR_WIP" type="NUMBER"/>
+            <column name="FEES_WIP" type="NUMBER"/>
+            <column name="HARD_WIP" type="NUMBER"/>
+            <column name="SOFT_WIP" type="NUMBER"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-21">
+        <createTable tableName="XXGPMS_PROJECT_INVOICES">
+            <column name="INVOICE_ID" type="NUMBER"/>
+            <column name="CONTRACT_ID" type="NUMBER"/>
+            <column name="INVOICE_CURRENCY_CODE" type="VARCHAR2(100 BYTE)"/>
+            <column name="REQUEST_ID" type="NUMBER"/>
+            <column name="CREATED_BY" type="VARCHAR2(100 BYTE)"/>
+            <column name="CREATION_DATE" type="VARCHAR2(100 BYTE)"/>
+            <column name="INVOICE_LINE_ID" type="NUMBER"/>
+            <column name="INVOICE_CURR_BILLED_AMT" type="NUMBER"/>
+            <column name="INVOICE_DATE" type="VARCHAR2(100 BYTE)"/>
+            <column name="ORG_ID" type="NUMBER"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+            <column name="WRITE_OFF_AMOUNT" type="NUMBER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-22">
+        <createTable tableName="MA_APPROVAL_INVOICES">
+            <column name="TASKID" type="VARCHAR2(4000 BYTE)"/>
+            <column name="TASKNUMBER" type="VARCHAR2(1000 BYTE)"/>
+            <column name="TASK_DEFINITION_NAME" type="VARCHAR2(4000 BYTE)"/>
+            <column name="PRIORITY" type="NUMBER"/>
+            <column name="TITLE" type="VARCHAR2(4000 BYTE)"/>
+            <column name="IDENTIFICATION_KEY" type="NUMBER"/>
+            <column name="CONTRACT_NUMBER" type="VARCHAR2(1000 BYTE)"/>
+            <column name="INVOICE_NUM" type="NUMBER"/>
+            <column name="INVOICE_STATUS_CODE" type="VARCHAR2(1000 BYTE)"/>
+            <column name="ASSIGNEE" type="VARCHAR2(2000 BYTE)"/>
+            <column name="ASSIGNEE_DISPLAY_NAME" type="VARCHAR2(2000 BYTE)"/>
+            <column name="INVOICE_CURRENCY_CODE" type="VARCHAR2(100 BYTE)"/>
+            <column name="INVOICE_DATE" type="VARCHAR2(1000 BYTE)"/>
+            <column name="INVOICE_AMOUNT" type="NUMBER"/>
+            <column name="WRITE_OFF_AMOUNT" type="NUMBER"/>
+            <column name="BILL_CUSTOMER_NAME" type="VARCHAR2(1000 BYTE)"/>
+            <column name="BILL_CUST_ACCT_NUM" type="VARCHAR2(1000 BYTE)"/>
+            <column name="BILL_CUST_ACCT_NAME" type="VARCHAR2(1000 BYTE)"/>
+            <column name="BILL_CUST_SITE" type="VARCHAR2(1000 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-23">
+        <createTable tableName="WEBSERVICE_CONFIG">
+            <column autoIncrement="true" defaultOnNull="true" generationType="BY DEFAULT" name="ID" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="WEBSERVICE_CONFIG_ID_PK"/>
+            </column>
+            <column name="NAME" type="VARCHAR2(100 CHAR)"/>
+            <column name="URL" type="VARCHAR2(1000 CHAR)"/>
+            <column name="ENVELOPE" type="VARCHAR2(1000 CHAR)"/>
+            <column name="ACTION" type="VARCHAR2(10 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-24">
+        <createTable tableName="XXGPMS_MATTER_CREDITS">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="ID" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="XXGPMS_MATTER_CREDITS_ID_PK"/>
+            </column>
+            <column name="MATTER_NUMBER" type="VARCHAR2(4000 CHAR)"/>
+            <column name="CREDIT_TYPE" type="VARCHAR2(1000 CHAR)"/>
+            <column name="BILLED" type="NUMBER"/>
+            <column name="PAID" type="NUMBER"/>
+            <column name="APPLIED" type="NUMBER"/>
+            <column name="AVAILABLE" type="NUMBER"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+            <column name="INVOICE_CURRENCY_CODE" type="VARCHAR2(100 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-25">
+        <createTable tableName="XXGPMS_EXP_TYPES">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="ID" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="XXGPMS_EXP_TYPES_ID_PK"/>
+            </column>
+            <column name="EXPENDITURE_TYPE_NAME" type="VARCHAR2(1000 CHAR)"/>
+            <column name="EXPENDITURE_TYPE_ID" type="NUMBER"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-26">
+        <createTable tableName="XXGPMS_JOB_LOGS">
+            <column name="JOB_NAME" type="VARCHAR2(100 CHAR)"/>
+            <column name="START_TS" type="TIMESTAMP(6) WITH LOCAL TIME ZONE"/>
+            <column name="END_TS" type="TIMESTAMP(6) WITH LOCAL TIME ZONE"/>
+            <column name="STATUS" type="VARCHAR2(100 CHAR)"/>
+            <column name="ERROR" type="CLOB"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-27">
+        <createTable tableName="XXGPMS_PROJECTS">
+            <column name="PROJECT_NUMBER" type="VARCHAR2(100 BYTE)"/>
+            <column name="TASK_ID" type="VARCHAR2(4000 BYTE)"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-28">
+        <createTable tableName="AXGPMS_EXPENSES">
+            <column name="PROJECT_NUMBER" type="VARCHAR2(100 BYTE)"/>
+            <column name="EXPENSE_TYPE" type="VARCHAR2(100 BYTE)"/>
+            <column name="RAW_COST" type="NUMBER(2, 10)"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+            <column name="STATUS" type="VARCHAR2(100 BYTE)"/>
+            <column name="EXPENSE_COST" type="NUMBER(10, 2)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-29">
+        <createTable tableName="AXGPMS_PROJECT">
+            <column name="PROJECT_NUMBER" type="VARCHAR2(100 BYTE)"/>
+            <column name="PROJECT_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="STATUS" type="VARCHAR2(20 BYTE)"/>
+            <column name="OWNER" type="VARCHAR2(50 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-30">
+        <createTable tableName="GPMS_PROFILE_OPTIONS">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="ID" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="GPMS_PROFILE_OPTIONS_PK"/>
+            </column>
+            <column name="PROFILE_OPTION" type="VARCHAR2(100 BYTE)"/>
+            <column name="VALUE" type="VARCHAR2(100 BYTE)"/>
+            <column name="ENABLED" type="VARCHAR2(5 BYTE)"/>
+            <column name="CREATED_DATE" type="date"/>
+            <column name="EXPIRY_DATE" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-31">
+        <createTable tableName="HTMLDB_PLAN_TABLE">
+            <column name="STATEMENT_ID" type="VARCHAR2(30 BYTE)"/>
+            <column name="PLAN_ID" type="NUMBER"/>
+            <column name="TIMESTAMP" type="date"/>
+            <column name="REMARKS" type="VARCHAR2(4000 BYTE)"/>
+            <column name="OPERATION" type="VARCHAR2(30 BYTE)"/>
+            <column name="OPTIONS" type="VARCHAR2(255 BYTE)"/>
+            <column name="OBJECT_NODE" type="VARCHAR2(128 BYTE)"/>
+            <column name="OBJECT_OWNER" type="VARCHAR2(128 BYTE)"/>
+            <column name="OBJECT_NAME" type="VARCHAR2(128 BYTE)"/>
+            <column name="OBJECT_ALIAS" type="VARCHAR2(261 BYTE)"/>
+            <column name="OBJECT_INSTANCE" type="NUMBER(*, 0)"/>
+            <column name="OBJECT_TYPE" type="VARCHAR2(128 BYTE)"/>
+            <column name="OPTIMIZER" type="VARCHAR2(255 BYTE)"/>
+            <column name="SEARCH_COLUMNS" type="NUMBER"/>
+            <column name="ID" type="NUMBER(*, 0)"/>
+            <column name="PARENT_ID" type="NUMBER(*, 0)"/>
+            <column name="DEPTH" type="NUMBER(*, 0)"/>
+            <column name="POSITION" type="NUMBER(*, 0)"/>
+            <column name="COST" type="NUMBER(*, 0)"/>
+            <column name="CARDINALITY" type="NUMBER(*, 0)"/>
+            <column name="BYTES" type="NUMBER(*, 0)"/>
+            <column name="OTHER_TAG" type="VARCHAR2(255 BYTE)"/>
+            <column name="PARTITION_START" type="VARCHAR2(255 BYTE)"/>
+            <column name="PARTITION_STOP" type="VARCHAR2(255 BYTE)"/>
+            <column name="PARTITION_ID" type="NUMBER(*, 0)"/>
+            <column name="OTHER" type="LONG"/>
+            <column name="DISTRIBUTION" type="VARCHAR2(30 BYTE)"/>
+            <column name="CPU_COST" type="NUMBER(*, 0)"/>
+            <column name="IO_COST" type="NUMBER(*, 0)"/>
+            <column name="TEMP_SPACE" type="NUMBER(*, 0)"/>
+            <column name="ACCESS_PREDICATES" type="VARCHAR2(4000 BYTE)"/>
+            <column name="FILTER_PREDICATES" type="VARCHAR2(4000 BYTE)"/>
+            <column name="PROJECTION" type="VARCHAR2(4000 BYTE)"/>
+            <column name="TIME" type="NUMBER(*, 0)"/>
+            <column name="QBLOCK_NAME" type="VARCHAR2(128 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-32">
+        <createTable remarks="DML Error Logging table for &quot;LOAD_NARRATIVES&quot;" tableName="LOAD_NARRATIVES_ERR$">
+            <column name="ORA_ERR_NUMBER$" type="NUMBER"/>
+            <column name="ORA_ERR_MESG$" type="VARCHAR2(2000 BYTE)"/>
+            <column name="ORA_ERR_ROWID$" type="UROWID"/>
+            <column name="ORA_ERR_OPTYP$" type="VARCHAR2(2 BYTE)"/>
+            <column name="ORA_ERR_TAG$" type="VARCHAR2(2000 BYTE)"/>
+            <column name="ID" type="VARCHAR2(4000 BYTE)"/>
+            <column name="EXPENDITURE_ITEM_ID" type="VARCHAR2(4000 BYTE)"/>
+            <column name="INVOICE_NARRATIVE" type="VARCHAR2(32767 BYTE)"/>
+            <column name="INTERNAL_COMMENTS" type="VARCHAR2(32767 BYTE)"/>
+            <column name="EXPENDITURE_ITEM_DATE" type="VARCHAR2(4000 BYTE)"/>
+            <column name="PERSON_NAME" type="VARCHAR2(32767 BYTE)"/>
+            <column name="TITLE" type="VARCHAR2(32767 BYTE)"/>
+            <column name="QUANTITY" type="VARCHAR2(4000 BYTE)"/>
+            <column name="UOM" type="VARCHAR2(32767 BYTE)"/>
+            <column name="BILLABLE" type="VARCHAR2(32767 BYTE)"/>
+            <column name="STANDARD_RATE" type="VARCHAR2(4000 BYTE)"/>
+            <column name="STANDARD_AMOUNT" type="VARCHAR2(4000 BYTE)"/>
+            <column name="AGREEMENT_RATE" type="VARCHAR2(4000 BYTE)"/>
+            <column name="AGREEMENT_AMOUNT" type="VARCHAR2(4000 BYTE)"/>
+            <column name="REAL__RATE" type="VARCHAR2(4000 BYTE)"/>
+            <column name="FEE_ALLOCATION" type="VARCHAR2(4000 BYTE)"/>
+            <column name="BILLABLE_HOLD" type="VARCHAR2(32767 BYTE)"/>
+            <column name="CURRENCY" type="VARCHAR2(32767 BYTE)"/>
+            <column name="DESCRIPTION" type="VARCHAR2(32767 BYTE)"/>
+            <column name="INV_STATUS" type="VARCHAR2(32767 BYTE)"/>
+            <column name="DRAFT_STATUS" type="VARCHAR2(32767 BYTE)"/>
+            <column name="DRAFT_INVOICE_NUMBER" type="VARCHAR2(32767 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-33">
+        <createTable tableName="PROGRESS_BAR_ENTRIES">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="ID" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODULE" type="VARCHAR2(100 BYTE)"/>
+            <column name="SEQ" type="NUMBER"/>
+            <column name="MESSAGE" type="VARCHAR2(200 BYTE)"/>
+            <column name="PERCENTAGE" type="NUMBER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-34">
+        <createTable tableName="PRT_ENVIRONMENTS_ERR$">
+            <column name="ORA_ERR_NUMBER$" type="NUMBER"/>
+            <column name="ORA_ERR_MESG$" type="VARCHAR2(2000 BYTE)"/>
+            <column name="ORA_ERR_ROWID$" type="UROWID"/>
+            <column name="ORA_ERR_OPTYP$" type="VARCHAR2(2 BYTE)"/>
+            <column name="ORA_ERR_TAG$" type="VARCHAR2(2000 BYTE)"/>
+            <column name="ENVIRONMENT_ID" type="VARCHAR2(4000 BYTE)"/>
+            <column name="ORGANIZATION_ID" type="VARCHAR2(4000 BYTE)"/>
+            <column name="ENVIRONMENT_NAME" type="VARCHAR2(32767 BYTE)"/>
+            <column name="BASE_URL" type="VARCHAR2(32767 BYTE)"/>
+            <column name="ENVIRONMENT_TYPE_CODE" type="VARCHAR2(32767 BYTE)"/>
+            <column name="ENVIRONMENT_PURPOSE_CODE" type="VARCHAR2(32767 BYTE)"/>
+            <column name="SSO_MODE_CODE" type="VARCHAR2(32767 BYTE)"/>
+            <column name="UPGRADE_SCHEDULE_CODE" type="VARCHAR2(32767 BYTE)"/>
+            <column name="UPGRADE_CONCURRENCY_CODE" type="VARCHAR2(32767 BYTE)"/>
+            <column name="VERSION" type="VARCHAR2(32767 BYTE)"/>
+            <column name="DESCRIPTION" type="VARCHAR2(32767 BYTE)"/>
+            <column name="ENABLED_FLAG" type="VARCHAR2(32767 BYTE)"/>
+            <column name="DFF_N1" type="VARCHAR2(4000 BYTE)"/>
+            <column name="DFF_N2" type="VARCHAR2(4000 BYTE)"/>
+            <column name="DFF_N3" type="VARCHAR2(4000 BYTE)"/>
+            <column name="DFF_N4" type="VARCHAR2(4000 BYTE)"/>
+            <column name="DFF_N5" type="VARCHAR2(4000 BYTE)"/>
+            <column name="DFF_V1" type="VARCHAR2(32767 BYTE)"/>
+            <column name="DFF_V2" type="VARCHAR2(32767 BYTE)"/>
+            <column name="DFF_V3" type="VARCHAR2(32767 BYTE)"/>
+            <column name="DFF_V4" type="VARCHAR2(32767 BYTE)"/>
+            <column name="DFF_V5" type="VARCHAR2(32767 BYTE)"/>
+            <column name="DFF_D1" type="VARCHAR2(4000 BYTE)"/>
+            <column name="DFF_D2" type="VARCHAR2(4000 BYTE)"/>
+            <column name="CREATION_DATE" type="VARCHAR2(4000 BYTE)"/>
+            <column name="CREATED_BY" type="VARCHAR2(32767 BYTE)"/>
+            <column name="LAST_UPDATE_DATE" type="VARCHAR2(4000 BYTE)"/>
+            <column name="LAST_UPDATED_BY" type="VARCHAR2(32767 BYTE)"/>
+            <column name="PROJECT_LABEL" type="VARCHAR2(32767 BYTE)"/>
+            <column name="TRUST_LABEL" type="VARCHAR2(32767 BYTE)"/>
+            <column name="RETAINER_LABEL" type="VARCHAR2(32767 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-35">
+        <createTable tableName="SPELL_CHECK_EXCEPTIONS">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="ID" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WORD" type="VARCHAR2(1000 BYTE)"/>
+            <column name="EXCEPTION_TYPE" type="VARCHAR2(10 BYTE)"/>
+            <column name="EXPENDITURE_ITEM_KEY" type="NUMBER"/>
+            <column name="USER_EMAIL" type="VARCHAR2(1000 BYTE)"/>
+            <column name="DTL_ID" type="NUMBER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-36">
+        <createTable tableName="XXGPMS_BILL_LINES">
+            <column autoIncrement="true" defaultOnNull="false" generationType="ALWAYS" name="SNO" type="NUMBER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C0056342"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR2(4000 BYTE)"/>
+            <column name="FEES" type="NUMBER"/>
+            <column name="PROJECT_NUMBER" type="VARCHAR2(1000 BYTE)"/>
+            <column name="PROJECT_ID" type="VARCHAR2(1000 BYTE)"/>
+            <column name="AGREEMENT_NUMBER" type="VARCHAR2(1000 BYTE)"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-37">
+        <createTable tableName="XXGPMS_PROJECT_COSTS_TMP">
+            <column name="PROJECT_ID" type="NUMBER(18, 0)"/>
+            <column name="PROJECT_NUMBER" type="VARCHAR2(25 BYTE)"/>
+            <column name="BILLABLE_FLAG" type="VARCHAR2(20 BYTE)"/>
+            <column name="TASK_ID" type="NUMBER(18, 0)"/>
+            <column name="TASK_NUMBER" type="VARCHAR2(25 BYTE)"/>
+            <column name="PROJECT_STATUS_CODE" type="VARCHAR2(25 BYTE)"/>
+            <column name="PROJECT_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="EXPENDITURE_ITEM_ID" type="NUMBER(18, 0)"/>
+            <column name="EXPENDITURE_ITEM_DATE" type="date"/>
+            <column name="REVENUE_RECOGNIZED_FLAG" type="VARCHAR2(20 BYTE)"/>
+            <column name="BILL_HOLD_FLAG" type="VARCHAR2(20 BYTE)"/>
+            <column name="QUANTITY" type="NUMBER"/>
+            <column name="PROJFUNC_RAW_COST" type="NUMBER"/>
+            <column name="RAW_COST_RATE" type="NUMBER"/>
+            <column name="PROJFUNC_BURDENED_COST" type="NUMBER"/>
+            <column name="BURDEN_COST_RATE" type="NUMBER"/>
+            <column name="INVOICED_FLAG" type="VARCHAR2(10 BYTE)"/>
+            <column name="REVENUE_HOLD_FLAG" type="VARCHAR2(10 BYTE)"/>
+            <column name="ACCT_CURRENCY_CODE" type="VARCHAR2(10 BYTE)"/>
+            <column name="ACCT_RAW_COST" type="NUMBER"/>
+            <column name="ACCT_BURDENED_COST" type="NUMBER"/>
+            <column name="TASK_BILLABLE_FLAG" type="VARCHAR2(10 BYTE)"/>
+            <column name="TASK_START_DATE" type="date"/>
+            <column name="TASK_COMPLETION_DATE" type="date"/>
+            <column name="PROJECT_START_DATE" type="date"/>
+            <column name="TASK_NAME" type="VARCHAR2(250 BYTE)"/>
+            <column name="SESSION_ID" type="NUMBER"/>
+            <column name="EXTERNAL_BILL_RATE" type="NUMBER"/>
+            <column name="INTERNAL_COMMENT" type="VARCHAR2(1000 BYTE)"/>
+            <column name="NARRATIVE_BILLING_OVERFLOW" type="VARCHAR2(1000 BYTE)"/>
+            <column name="TOTAL_AMOUNT" type="NUMBER(18, 2)"/>
+            <column name="EXPENDITURE_COMMENT" type="VARCHAR2(2000 BYTE)"/>
+            <column name="UNIT_OF_MEASURE" type="VARCHAR2(30 BYTE)"/>
+            <column name="FIRST_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="LAST_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="PERSON_NAME" type="VARCHAR2(200 BYTE)"/>
+            <column name="EXPENDITURE_TYPE_NAME" type="VARCHAR2(240 BYTE)"/>
+            <column name="EXPENDITURE_CATEGORY_NAME" type="VARCHAR2(240 BYTE)"/>
+            <column name="PROJECT_BILL_RATE_ATTR" type="VARCHAR2(24 BYTE)"/>
+            <column name="REALIZED_BILL_RATE_ATTR" type="VARCHAR2(24 BYTE)"/>
+            <column name="STANDARD_BILL_RATE_ATTR" type="VARCHAR2(24 BYTE)"/>
+            <column name="EVENT_ATTR" type="VARCHAR2(100 BYTE)"/>
+            <column name="PROJECT_BILL_RATE_AMT" type="VARCHAR2(24 BYTE)"/>
+            <column name="REALIZED_BILL_RATE_AMT" type="VARCHAR2(24 BYTE)"/>
+            <column name="STANDARD_BILL_RATE_AMT" type="NUMBER"/>
+            <column name="BU_NAME" type="VARCHAR2(50 BYTE)"/>
+            <column name="BU_ID" type="NUMBER"/>
+            <column name="JOB_NAME" type="VARCHAR2(50 BYTE)"/>
+            <column name="JOB_ID" type="NUMBER"/>
+            <column name="SYSTEM_LINKAGE_FUNCTION" type="VARCHAR2(10 BYTE)"/>
+            <column name="CST_INVOICE_SUBMITTED_COUNT" type="NUMBER"/>
+            <column name="ORIG_TRANSACTION_REFERENCE" type="VARCHAR2(100 BYTE)"/>
+            <column name="DOCUMENT_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="DOC_ENTRY_NAME" type="VARCHAR2(100 BYTE)"/>
+            <column name="CREATION_DATE" type="date"/>
+            <column name="CREATED_BY" type="VARCHAR2(100 BYTE)"/>
+            <column name="LAST_UPDATE_DATE" type="date"/>
+            <column name="LAST_UPDATED_BY" type="VARCHAR2(100 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-38">
+        <createIndex indexName="PROGRESS_BAR_ENTRIES_CON" tableName="PROGRESS_BAR_ENTRIES" unique="true">
+            <column name="SEQ"/>
+            <column name="MODULE"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-39">
+        <addUniqueConstraint columnNames="SEQ, MODULE" constraintName="PROGRESS_BAR_ENTRIES_CON" forIndexName="PROGRESS_BAR_ENTRIES_CON" tableName="PROGRESS_BAR_ENTRIES"/>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-40">
+        <createIndex indexName="PRT_ENVIRONMENTS_U1" tableName="PRT_ENVIRONMENTS" unique="true">
+            <column name="ORGANIZATION_ID"/>
+            <column name="ENVIRONMENT_NAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-41">
+        <createIndex indexName="PRT_ORGANIZATIONS_U1" tableName="PRT_ORGANIZATIONS" unique="true">
+            <column name="ORGANIZATION_NAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="vamsikrishna (generated)" id="1728992971308-42">
+        <addForeignKeyConstraint baseColumnNames="ORGANIZATION_ID" baseTableName="PRT_ENVIRONMENTS" constraintName="PRT_ENVIRONMENTS_FK1" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="ORGANIZATION_ID" referencedTableName="PRT_ORGANIZATIONS" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -5,7 +5,7 @@
 	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-	<changeSet id="eb2b03bac053129b49d2b737130b9c9f49b4f9c0" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
+	<changeSet id="dd0d1a22aac9faeedbc0ccb666d6aaf3089b40eb" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
 		<n0:createOraclePackageBody objectName="XX_GPMS" objectType="PACKAGE_BODY" ownerName="WKSP_FRONGPMSTDEV"  replaceIfExists="false" >
 			<n0:source><![CDATA[CREATE OR REPLACE EDITIONABLE PACKAGE BODY "%USER_NAME%"."XX_GPMS" AS
   INSTANCE_URL VARCHAR2(200);
@@ -1939,13 +1939,13 @@
        PERFORM_UNPROCESSED_COSTS_CALL(P_EXPENDITURE_ITEM_ID => P_EXPENDITURE_ITEM_ID
                                    ,P_INTERNAL_COMMENT=>TRIM( BOTH ':' FROM P_JUSTIFICATION)
                                    ,P_HOURS_ENTERED => P_ADJUSTED_HOURS
-                                   ,P_REALIZED_BILL_RATE_ATTR => 0
                                    ,P_RESPONSE => V_RESPONSE
                                    ,P_RESPONSE_CODE => V_RESPONSE_CODE);
        WIP_DEBUG(2,15003,'STEP 2.1','');
        PERFORM_UNPROCESSED_COSTS_CALL(P_EXPENDITURE_ITEM_ID => P_EXPENDITURE_ITEM_ID
                                     ,P_INTERNAL_COMMENT=>TRIM( BOTH ':' FROM P_JUSTIFICATION)
-                                    ,P_HOURS_ENTERED => V_PROJECT_COSTS_ROW.QUANTITY-P_ADJUSTED_HOURS                                   
+                                    ,P_HOURS_ENTERED => V_PROJECT_COSTS_ROW.QUANTITY-P_ADJUSTED_HOURS   
+                                     ,P_REALIZED_BILL_RATE_ATTR => 0                                
                                     ,P_RESPONSE => V_RESPONSE
                                     ,P_RESPONSE_CODE => V_RESPONSE_CODE);
        WIP_DEBUG(2,15004,'END OF HOURS ADJUSTMENT','');
@@ -2136,6 +2136,7 @@
           BILL_HOLD_FLAG = CASE WHEN P_BILL_HOLD_FLAG <> 'BO' THEN P_BILL_HOLD_FLAG END
         WHERE
           EXPENDITURE_ITEM_ID = I.EXP_ID;
+        WIP_DEBUG (3, 5306, 'Updated for Exp ID: '||i.exp_id, '');   
       END IF;
 
     --   INPUT_STR := SUBSTR(INPUT_STR, VAR1, 32000);
