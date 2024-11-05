@@ -5,7 +5,7 @@
 	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-	<changeSet id="930896ed1ee9ddfa2b729db9e2217b64f45f8e54" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
+	<changeSet id="a78e6d3a4e2e86210d033e8463c35952ec87a32c" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
 		<n0:createOraclePackageBody objectName="MA_UTIL" objectType="PACKAGE_BODY" ownerName="WKSP_FRONGPMSTDEV"  replaceIfExists="false" >
 			<n0:source><![CDATA[CREATE OR REPLACE EDITIONABLE PACKAGE BODY "%USER_NAME%"."MA_UTIL" as
     P_URL        VARCHAR2(200);
@@ -120,7 +120,7 @@
 
     P_RESPONSE := L_RESPONSE_CLOB;  
     P_RESPONSE_CODE := APEX_WEB_SERVICE.G_STATUS_CODE;
-    
+
     WEBSERVICE_LOGGER(INSTANCE_URL||V_WEBSERVICE_CONFIG_ROW.URL,P_REQUEST,L_RESPONSE_CLOB,APEX_WEB_SERVICE.G_STATUS_CODE);
 
   EXCEPTION
@@ -135,7 +135,7 @@
     V_RESPONSE_CODE NUMBER;
     V_RESPONSE VARCHAR2(4000);
   BEGIN
-    
+
     SELECT ENVELOPE
     INTO   V_ENVELOPE
     FROM   WEBSERVICE_CONFIG 
@@ -159,7 +159,7 @@
     V_RESPONSE_CODE NUMBER;
     V_RESPONSE VARCHAR2(4000);
   BEGIN
-    
+
     SELECT ENVELOPE
     INTO   V_ENVELOPE
     FROM   WEBSERVICE_CONFIG 

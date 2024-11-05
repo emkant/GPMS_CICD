@@ -13,9 +13,9 @@ CREATE OR REPLACE EDITIONABLE PROCEDURE "PROC_UPDATE_STATUS" (p_project_number i
   l_report_response varchar2(32000); 
   l_report_decode varchar2(32000); 
   l_temp varchar2(32000) ; 
-   
+
  begin 
-  
+
 p_username := 'amy.marlin'; 
 p_password := 'Arn36576'; 
 --p_password := 'Fr0ntera!123'; 
@@ -29,7 +29,7 @@ DELETE FROM AXXML_TAB;
  insert into axxml_tab (id, vc2_data) values (1, 'PROC_UPDATE_STATUS for '||p_project_number); 
 --l_url := 'https://eda.fa.us1.oraclecloud.com/xmlpserver/services/ExternalReportWSSService'; 
 l_url := 'https://adc3-zlnq-fa-ext.oracledemos.com/xmlpserver/services/ExternalReportWSSService'; 
-  
+
  l_envelope := '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:pub="http://xmlns.oracle.com/oxp/service/PublicReportService"> 
    <soap:Header/> 
    <soap:Body> 
@@ -51,7 +51,7 @@ l_url := 'https://adc3-zlnq-fa-ext.oracledemos.com/xmlpserver/services/ExternalR
       </pub:runReport> 
    </soap:Body> 
 </soap:Envelope>'; 
-  
+
   l_response_xml :=   apex_web_service.make_request( 
             p_url      => l_url, 
             p_version  => l_version, 
@@ -59,29 +59,29 @@ l_url := 'https://adc3-zlnq-fa-ext.oracledemos.com/xmlpserver/services/ExternalR
             p_envelope => l_envelope, 
             p_username => p_username, 
             p_password => p_password); 
-  
+
  insert into axxml_tab (id, xml_data) values (2, l_response_xml); 
-  
-  
+
+
   l_report_response := apex_web_service.parse_xml( 
-  
+
      p_xml => l_response_xml, 
      p_xpath => ' //runReportResponse/runReportReturn/reportBytes', 
      p_ns => ' xmlns="http://xmlns.oracle.com/oxp/service/PublicReportService"' ); 
-  
+
   insert into axxml_tab (id, xml_data) values (3, l_report_response); 
-  
+
   l_temp := substr(l_report_response, instr(l_report_response,'>') +1,instr(substr(l_report_response, instr(l_report_response,'>') +1),'</ns2:report')-1); 
   l_report_response := l_temp; 
-   
+
 --l_report_response := 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLUdlbmVyYXRlZCBieSBPcmFjbGUgQkkgUHVibGlzaGVyIC1EYXRhZW5naW5lLCBkYXRhbW9kZWw6X0N1c3RvbV9Qcm9jdXJlbWVudF9QdXJjaGFzaW5nX1N1cHBsaWVyU2FtcGxlX3hkbSAtLT4KPERBVEFfRFM+CjxHXzE+CjxTVVBQTElFUl9OVU1CRVI+MTI1MjwvU1VQUExJRVJfTlVNQkVSPjxTVVBQTElFUl9OQU1FPkxlZSBTdXBwbGllczwvU1VQUExJRVJfTkFNRT4KPC9HXzE+CjxHXzE+CjxTVVBQTElFUl9OVU1CRVI+MTI1MzwvU1VQUExJRVJfTlVNQkVSPjxTVVBQTElFUl9OQU1FPlN0YWZmaW5nIFNlcnZpY2VzPC9TVVBQTElFUl9OQU1FPgo8L0dfMT4KPC9EQVRBX0RTPg=='; 
-  
-  
+
+
  l_report_decode := utl_raw.cast_to_varchar2(utl_encode.base64_decode(utl_raw.cast_to_raw(l_report_response))); 
-  
+
   insert into axxml_tab (id, xml_data) values (4, l_report_decode); 
-  
-  
+
+
  insert into XXGPMS_PROJECT_COSTS 
 ( 
 PROJECT_ID 
@@ -209,11 +209,11 @@ FROM
                 JOB_NAME PATH 'JOB_NAME', 
                 JOB_ID PATH 'JOB_ID' 
                ) xt; 
-   
+
 --- Code for Project Events 
 --l_url := 'https://eda.fa.us1.oraclecloud.com/xmlpserver/services/ExternalReportWSSService'; 
 l_url := 'https://adc3-zlnq-fa-ext.oracledemos.com/xmlpserver/services/ExternalReportWSSService'; 
-  
+
  l_envelope := '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:pub="http://xmlns.oracle.com/oxp/service/PublicReportService"> 
    <soap:Header/> 
    <soap:Body> 
@@ -235,7 +235,7 @@ l_url := 'https://adc3-zlnq-fa-ext.oracledemos.com/xmlpserver/services/ExternalR
       </pub:runReport> 
    </soap:Body> 
 </soap:Envelope>'; 
-  
+
   l_response_xml :=   apex_web_service.make_request( 
             p_url      => l_url, 
             p_version  => l_version, 
@@ -243,32 +243,32 @@ l_url := 'https://adc3-zlnq-fa-ext.oracledemos.com/xmlpserver/services/ExternalR
             p_envelope => l_envelope, 
             p_username => p_username, 
             p_password => p_password); 
-  
+
  insert into axxml_tab (id, xml_data) values (2, l_response_xml); 
-  
-  
+
+
   l_report_response := apex_web_service.parse_xml( 
-  
+
      p_xml => l_response_xml, 
      p_xpath => ' //runReportResponse/runReportReturn/reportBytes', 
      p_ns => ' xmlns="http://xmlns.oracle.com/oxp/service/PublicReportService"' ); 
-  
+
   insert into axxml_tab (id, xml_data) values (3, l_report_response); 
-  
+
   l_temp := substr(l_report_response, instr(l_report_response,'>') +1,instr(substr(l_report_response, instr(l_report_response,'>') +1),'</ns2:report')-1); 
   l_report_response := l_temp; 
-   
+
 --l_report_response := 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLUdlbmVyYXRlZCBieSBPcmFjbGUgQkkgUHVibGlzaGVyIC1EYXRhZW5naW5lLCBkYXRhbW9kZWw6X0N1c3RvbV9Qcm9jdXJlbWVudF9QdXJjaGFzaW5nX1N1cHBsaWVyU2FtcGxlX3hkbSAtLT4KPERBVEFfRFM+CjxHXzE+CjxTVVBQTElFUl9OVU1CRVI+MTI1MjwvU1VQUExJRVJfTlVNQkVSPjxTVVBQTElFUl9OQU1FPkxlZSBTdXBwbGllczwvU1VQUExJRVJfTkFNRT4KPC9HXzE+CjxHXzE+CjxTVVBQTElFUl9OVU1CRVI+MTI1MzwvU1VQUExJRVJfTlVNQkVSPjxTVVBQTElFUl9OQU1FPlN0YWZmaW5nIFNlcnZpY2VzPC9TVVBQTElFUl9OQU1FPgo8L0dfMT4KPC9EQVRBX0RTPg=='; 
-  
-  
+
+
  l_report_decode := utl_raw.cast_to_varchar2(utl_encode.base64_decode(utl_raw.cast_to_raw(l_report_response))); 
-  
+
   insert into axxml_tab (id, xml_data) values (5, l_report_decode); 
-  
-  
+
+
  insert into XXGPMS_PROJECT_EVENTS 
 ( 
-     
+
     PROJECT_ID 
 	,SEGMENT1 
 	,PROJECT_STATUS_CODE 
@@ -343,9 +343,9 @@ FROM
                 ,EVNT_COMPLETION_DATE PATH 'EVNT_COMPLETION_DATE' 
                 ,EVENT_INTERNAL_COMMENT PATH 'EVENT_INTERNAL_COMMENT' 
                 ,EVENT_DESC PATH 'EVENT_DESC' 
-	 
+
          ) xt; 
-   
+
  insert into axxml_tab (id, vc2_data) values (6, 'PROC_UPDATE_STATUS End '); 
 end;
 /

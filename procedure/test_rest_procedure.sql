@@ -21,7 +21,7 @@ begin
         UPPER(ORGANIZATION_NAME) = 'MAPLES'
     )
     AND UPPER(ENVIRONMENT_NAME) = 'DEV1';
-   
+
 
   L_URL := INSTANCE_URL||'/fscmRestApi/resources/11.13.18.05/projectExpenditureItems';
   L_CLOB := APEX_WEB_SERVICE.MAKE_REST_REQUEST ( P_URL => L_URL
@@ -32,6 +32,6 @@ begin
 exception
   when others then
     dbms_output.put_line(sqlerrm);                                                                
-    
+
 end "TEST_REST";
 /

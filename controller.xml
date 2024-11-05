@@ -17,6 +17,7 @@
   <include file="table/load_narratives_table.xml"/> 
   <include file="table/load_narratives_err$_table.xml"/> 
   <include file="table/ma_approval_invoices_table.xml"/> 
+  <include file="table/new_table_gen2_table.xml"/> 
   <include file="table/progress_bar_entries_table.xml"/> 
   <include file="table/progress_entries_table.xml"/> 
   <include file="table/prt_environments_table.xml"/> 

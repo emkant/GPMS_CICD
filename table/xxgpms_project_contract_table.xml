@@ -5,7 +5,7 @@
 	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-	<changeSet id="242b0de1841d5d6059eed0f9df2a9eea4f131e34" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
+	<changeSet id="4adc8a120fb07afcf620978cbd2b88a5c2864cca" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
 		<n0:createSxmlObject objectName="XXGPMS_PROJECT_CONTRACT" objectType="TABLE" ownerName="WKSP_FRONGPMSTDEV"  replaceIfExists="false" >
 			<n0:source><![CDATA[
   <TABLE xmlns="http://xmlns.oracle.com/ku" version="1.0">
@@ -79,7 +79,7 @@
          <COL_LIST_ITEM>
             <NAME>CUSTOMER_NAME</NAME>
             <DATATYPE>VARCHAR2</DATATYPE>
-            <LENGTH>100</LENGTH>
+            <LENGTH>1000</LENGTH>
             <COLLATE_NAME>USING_NLS_COMP</COLLATE_NAME>
          </COL_LIST_ITEM>
          <COL_LIST_ITEM>

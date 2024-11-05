@@ -1271,6 +1271,7 @@ CREATE OR REPLACE EDITIONABLE PACKAGE BODY "XX_GPMS" AS
     L_PERCENTAGE NUMBER;
     V_RESPONSE CLOB;
     V_RESPONSE_CODE NUMBER;
+    V_BILLABLE_FLAG VARCHAR2(1000);
 
     CURSOR C_PROJECT_SPLIT_CUR IS
     SELECT
@@ -1326,7 +1327,10 @@ CREATE OR REPLACE EDITIONABLE PACKAGE BODY "XX_GPMS" AS
         TRANSACTION_SOURCE_ID,
         DOCUMENT_ID,
         EXP_ORG_ID,
-        EXPENDITURE_COMMENT
+        EXPENDITURE_COMMENT,
+        CASE BILLABLE_FLAG WHEN 'Y' THEN 'Set to Billable'
+                                       WHEN 'N' THEN 'Set to nonbillable'
+                    END
         INTO V_EXPENDITURE_BATCH,
              V_TRANSACTION_SOURCE,
              V_DOCUMENT,
@@ -1344,74 +1348,88 @@ CREATE OR REPLACE EDITIONABLE PACKAGE BODY "XX_GPMS" AS
              V_TRANSACTION_SOURCE_ID,
              V_DOCUMENT_ID,
              V_EXP_ORG_ID,
-             V_EXPENDITURE_COMMENT
+             V_EXPENDITURE_COMMENT,
+             V_BILLABLE_FLAG
       FROM
         XXGPMS_PROJECT_COSTS
       WHERE
         SESSION_ID = V ('APP_SESSION')
         AND EXPENDITURE_ITEM_ID = i.EXP_ID;
 
-      L_URL := INSTANCE_URL
-               || '/fscmRestApi/resources/11.13.18.05/unprocessedProjectCosts';
-      L_ENVELOPE := '{"ExpenditureBatch" : "'
-                    || V_EXPENDITURE_BATCH
-                    || '",
-                              "TransactionSource" : "'
-                    || V_TRANSACTION_SOURCE
-                    || '",
-                              "BusinessUnit" : "'
-                    || V_BUSINESS_UNIT
-                    || '",
-                              "Document" : "'
-                    || V_DOCUMENT
-                    || '",
-                              "DocumentEntry" : "'
-                    || V_DOCUMENT_ENTRY
-                    || '",
-                              "Status" : "'
-                    || V_STATUS
-                    || '",
-                              "Quantity" : "'
-                    || V_QUANTITY
-                    || '",
-                              "UnitOfMeasureCode" : "'
-                    || V_UNIT_OF_MEASURE
-                    || '",
-                              "PersonName" : "'
-                    || V_PERSON_NAME
-                    || '",
-                              "ReversedOriginalTransactionReference" : "'
-                    || V_ORIG_TRANSACTION_REFERENCE
-                    || '",
-                              "OriginalTransactionReference" : "'
-                    || regexp_replace(V_ORIG_TRANSACTION_REFERENCE,'*-[0-9]*','-'||XXGPMS_TRANS_SEQ.NEXTVAL)
-                    || '",
-                         "UnmatchedNegativeTransactionFlag" : "false",
-                          "Comment" : "'
-                    || V_EXPENDITURE_COMMENT
-                    || '",
-                              "ProjectStandardCostCollectionFlexfields" : ['
-                    || '{
-                                                                                  "_EXPENDITURE_ITEM_DATE" : "'
-                    || TO_CHAR(V_EXP_ITEM_DATE, 'YYYY-MM-DD')
-                       || '",
+    --   L_URL := INSTANCE_URL
+    --            || '/fscmRestApi/resources/11.13.18.05/unprocessedProjectCosts';
 
-                               "_ORGANIZATION_ID" : "'
-                        || V_EXP_ORG_ID
-                         || '",
-                                                                                  "_PROJECT_ID_Display" : "'
-                       || V_PROJECT_NUMBER
-                       || '",
-                                                                                  "_TASK_ID_Display" : "'
-                       || V_TASK_NUMBER
-                       || '",
-                                                                                  "_EXPENDITURE_TYPE_ID_Display" : "'
-                       || V_EXPENDITURE_TYPE_NAME
-                       || '"}] }';
+      L_URL := INSTANCE_URL|| '/fscmRestApi/resources/11.13.18.05/projectCosts/'|| I.EXP_ID|| '/action/adjustProjectCosts'; 
+
+    --   L_ENVELOPE := '{"ExpenditureBatch" : "'
+    --                 || V_EXPENDITURE_BATCH
+    --                 || '",
+    --                           "TransactionSource" : "'
+    --                 || V_TRANSACTION_SOURCE
+    --                 || '",
+    --                           "BusinessUnit" : "'
+    --                 || V_BUSINESS_UNIT
+    --                 || '",
+    --                           "Document" : "'
+    --                 || V_DOCUMENT
+    --                 || '",
+    --                           "DocumentEntry" : "'
+    --                 || V_DOCUMENT_ENTRY
+    --                 || '",
+    --                           "Status" : "'
+    --                 || V_STATUS
+    --                 || '",
+    --                           "Quantity" : "'
+    --                 || V_QUANTITY
+    --                 || '",
+    --                           "UnitOfMeasureCode" : "'
+    --                 || V_UNIT_OF_MEASURE
+    --                 || '",
+    --                           "PersonName" : "'
+    --                 || V_PERSON_NAME
+    --                 || '",
+    --                           "ReversedOriginalTransactionReference" : "'
+    --                 || V_ORIG_TRANSACTION_REFERENCE
+    --                 || '",
+    --                           "OriginalTransactionReference" : "'
+    --                 || regexp_replace(V_ORIG_TRANSACTION_REFERENCE,'*-[0-9]*','-'||XXGPMS_TRANS_SEQ.NEXTVAL)
+    --                 || '",
+    --                      "UnmatchedNegativeTransactionFlag" : "false",
+    --                       "Comment" : "'
+    --                 || V_EXPENDITURE_COMMENT
+    --                 || '",
+    --                           "ProjectStandardCostCollectionFlexfields" : ['
+    --                 || '{
+    --                                                                               "_EXPENDITURE_ITEM_DATE" : "'
+    --                 || TO_CHAR(V_EXP_ITEM_DATE, 'YYYY-MM-DD')
+    --                    || '",
+
+    --                            "_ORGANIZATION_ID" : "'
+    --                     || V_EXP_ORG_ID
+    --                      || '",
+    --                                                                               "_PROJECT_ID_Display" : "'
+    --                    || V_PROJECT_NUMBER
+    --                    || '",
+    --                                                                               "_TASK_ID_Display" : "'
+    --                    || V_TASK_NUMBER
+    --                    || '",
+    --                                                                               "_EXPENDITURE_TYPE_ID_Display" : "'
+    --                    || V_EXPENDITURE_TYPE_NAME
+    --                    || '"}] }';
+
+
+      L_ENVELOPE := q'#{
+        "AdjustmentTypeCode": "REVERSE",
+        "ProjectNumber": "#'||V_PROJECT_NUMBER||q'#",
+        "TaskNumber": "#'||V_TASK_NUMBER||q'#",
+        "Justification": "#'||P_JUSTIFICATION||q'#",
+        "Quantity" : "#'||V_ORIGINAL_QUANTITY||q'#"
+        }#';
       APEX_WEB_SERVICE.G_REQUEST_HEADERS (1).NAME := 'Content-Type';
-      APEX_WEB_SERVICE.G_REQUEST_HEADERS (1).VALUE := 'application/json';
+      APEX_WEB_SERVICE.G_REQUEST_HEADERS (1).VALUE := 'application/vnd.oracle.adf.action+json';
       WIP_DEBUG (2, 4150, L_URL, '');
       WIP_DEBUG (2, 4200, L_ENVELOPE, '');
+
       L_RESPONSE_CLOB := APEX_WEB_SERVICE.MAKE_REST_REQUEST (
         P_URL => L_URL,
         P_HTTP_METHOD => 'POST',
@@ -1457,6 +1475,10 @@ CREATE OR REPLACE EDITIONABLE PACKAGE BODY "XX_GPMS" AS
       L_PERCENTAGE := J.PERCENTAGE;
 
       V_PROJECT_SPLIT_NUM := V_PROJECT_SPLIT_NUM + 1;
+
+      L_URL := INSTANCE_URL
+               || '/fscmRestApi/resources/11.13.18.05/unprocessedProjectCosts';
+
       L_ENVELOPE := '{"ExpenditureBatch" : "'
                     || V_EXPENDITURE_BATCH
                     || '",
@@ -2529,7 +2551,7 @@ CREATE OR REPLACE EDITIONABLE PACKAGE BODY "XX_GPMS" AS
                             ||I.BILL_TRNS_AMOUNT, '');
         IF NVL(I.BILL_TRNS_AMOUNT, 0) <> 0 THEN
           IF I.FUSION_FLAG = 'N' THEN
- --- Create Project Events -------
+        --- Create Project Events -------
             L_URL := INSTANCE_URL
                      || '/fscmRestApi/resources/11.13.18.05/projectBillingEvents';
             WIP_DEBUG (3, 7201, L_URL, '');
@@ -3242,7 +3264,7 @@ CREATE OR REPLACE EDITIONABLE PACKAGE BODY "XX_GPMS" AS
 				 <typ:paramList>'
       || CASE
         WHEN P_PROJECT_NUMBER IS NOT NULL THEN
-          REPLACE(P_PROJECT_NAME, '&', '&amp;')
+          REPLACE(P_PROJECT_NAME, '&', ';')
         ELSE
           NULL
       END

@@ -8,4 +8,5 @@ BEGIN
   :new.last_updated_by    := nvl(v('APP_USER'),USER); 
   :new.last_update_date   := SYSTIMESTAMP; 
 END;
+
 /

@@ -1,0 +1,2 @@
+[2024-10-23 18:08:22] INFO [oracle.dbtools.raptor.scriptrunner.commands.liquibase.LbCommand handleEvent] Starting LB command: DIFF-CHANGELOG
+[2024-10-23 18:08:23] INFO [oracle.dbtools.raptor.scriptrunner.commands.liquibase.LbCommand handleEvent] Logging Ended

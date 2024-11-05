@@ -5,7 +5,7 @@
 	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-	<changeSet id="a56b90f5ad5e9256d96141cd84ca8304aac30d7c" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
+	<changeSet id="d3484ce0f7f537e9d7ee91bf25bfc4c5b84e5237" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
 		<n0:createSxmlObject objectName="XXGPMS_EXP_TYPES" objectType="TABLE" ownerName="WKSP_FRONGPMSTDEV"  replaceIfExists="false" >
 			<n0:source><![CDATA[
   <TABLE xmlns="http://xmlns.oracle.com/ku" version="1.0">
@@ -19,7 +19,7 @@
             <IDENTITY_COLUMN>
                <SCHEMA>%USER_NAME%</SCHEMA>
                <GENERATION>ALWAYS</GENERATION>
-               <START_WITH>18521</START_WITH>
+               <START_WITH>22281</START_WITH>
                <INCREMENT>1</INCREMENT>
                <MINVALUE>1</MINVALUE>
                <MAXVALUE>9999999999999999999999999999</MAXVALUE>

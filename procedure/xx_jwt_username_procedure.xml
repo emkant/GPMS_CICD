@@ -5,23 +5,23 @@
 	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
 	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-	<changeSet id="30b98864efa148443f40f489b657770af85811fd" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
+	<changeSet id="23d4a56139c0fc557989ce28d7034d208a3b9870" author="(WKSP_FRONGPMSTDEV)-Generated" failOnError="true"   runOnChange="false" runAlways="false"  >
 		<n0:createOracleProcedure objectName="XX_JWT_USERNAME" objectType="PROCEDURE" ownerName="WKSP_FRONGPMSTDEV"  replaceIfExists="false" >
 			<n0:source><![CDATA[CREATE OR REPLACE EDITIONABLE PROCEDURE "%USER_NAME%"."XX_JWT_USERNAME" 
  is    
 i number;  
-  
+
 begin  
 i := 0;  
-  
+
 DELETE FROM XXGPMS_PROJECT_COSTS
 WHERE  SESSION_ID = V('APP_SESSION');
 DELETE FROM XXGPMS_PROJECT_WIP_CATEGORY
 WHERE  SESSION_ID = V('APP_SESSION');
-         
+
         DELETE FROM XXGPMS_PROJECT_EVENTS
         WHERE  SESSION_ID = V('APP_SESSION');
-         
+
         DELETE FROM XXGPMS_PROJECT_CONTRACT
         WHERE  SESSION_ID = V('APP_SESSION');
 
@@ -36,21 +36,21 @@ WHERE  SESSION_ID = V('APP_SESSION');
 
         --  DELETE FROM XXGPMS_PROJECTS
         -- WHERE  SESSION_ID = V('APP_SESSION');
-         
+
         DELETE FROM XXGPMS_MATTER_CREDITS
         WHERE  SESSION_ID = V('APP_SESSION');
 
         DELETE FROM XXGPMS_INTERPROJECTS
          WHERE  SESSION_ID = V('APP_SESSION');
-         
+
         DELETE FROM AXXML_TAB; 
         DELETE FROM SPELL_CHECK;
         DELETE FROM  XXGPMS_EXP_TYPES; 
         -- DELETE FROM  XXGPMS_; 
-                
+
         DELETE FROM SPELL_CHECKER_DTL; 
-         
-  
+
+
 end;
 /]]></n0:source>
 		</n0:createOracleProcedure>
